@@ -87,6 +87,7 @@ with t1 as(
      from Trips
     where Client_Id not in (select Users_Id from Users where Banned = 'Yes')
       and Driver_Id not in (select Users_Id from Users where Banned = 'Yes')
+      and Request_at between '2013-10-01' and '2013-10-03'
 )
 select
      Request_at as `Day`
