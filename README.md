@@ -1,3 +1,3 @@
 # Leetcode
 A data warehouse engineer, favorite language was SQL.
-This repository was his practice normaly.
+This repository was his practice and playground normaly.
