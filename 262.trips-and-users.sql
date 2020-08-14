@@ -82,20 +82,16 @@
 # Write your MySQL query statement below
 with t1 as(
     select
-         Id
-        ,Client_Id
-        ,Driver_Id
-        ,City_Id
-        ,(case when Status = 'completed' then 1 else 0 end) as status
+         (case when Status = 'completed' then 0 else 1 end) as status
         ,Request_at
      from Trips
-    where Client_Id not in (select Users_Id from Users where Banned = 'No')
-      and Driver_Id not in (select Users_Id from Users where Banned = 'No')
+    where Client_Id not in (select Users_Id from Users where Banned = 'Yes')
+      and Driver_Id not in (select Users_Id from Users where Banned = 'Yes')
 )
 select
      Request_at as `Day`
-    ,sum(status)/count(status) as `Cancellation Rate`
-from t1
+    ,round(sum(status)/count(status),2) as `Cancellation Rate`
+from t1 
 group by Request_at
 ;
 -- @lc code=end
