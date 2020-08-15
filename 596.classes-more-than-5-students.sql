@@ -6,21 +6,15 @@
 
 -- @lc code=start
 # Write your MySQL query statement below
-with t1 as (
-    select
-         class
-        ,count(1) as cnt
-    from (
-        select
-            *
-        from courses
-        group by 1,2
-    ) t0
-    group by class
-)
 select
-    class
-from t1
-where cnt >= 5;
+     class
+from (
+    select
+        *
+    from courses
+    group by 1,2
+) t0
+group by class
+having count(1) >=5;
 -- @lc code=end
 
